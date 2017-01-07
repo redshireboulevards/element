@@ -55,3 +55,11 @@ INSTALLED_APPS += ('django_extensions', )
 
 # -----------------------------------TESTING-------------------------------------------
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+# -----------------------------------DATABASES-------------------------------------------
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ROOT_DIR('db.sqlite3'),
+    }
+}
