@@ -1,0 +1,10 @@
+django
+
+django-environ
+
+psycopg2
+
+pytz
+
+django-redis
+redis
