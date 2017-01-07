@@ -12,5 +12,4 @@ redis
 
 djangorestframework
 django-rest-swagger
-django-users2
 djoser
