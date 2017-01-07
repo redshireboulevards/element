@@ -30,12 +30,12 @@ THIRD_PARTY_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',
-    'users',
     'djoser',
 )
 
 LOCAL_APPS = (
     'element.core.apps.CoreConfig',
+    'element.accounts.apps.AccountsConfig',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -96,7 +96,7 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Los_Angeles'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en-us'
@@ -226,17 +226,13 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = '/api-auth/login/'
 LOGOUT_URL = '/api-auth/logout/'
 
-USERS_CREATE_SUPERUSER = True  # DEBUG
-USERS_SUPERUSER_EMAIL = 'admin@element.com'
-USERS_SUPERUSER_PASSWORD = '123qwe'
-
 # -------------------------------- DJOSER--------------------------------------
 DJOSER = {
-    'DOMAIN': 'http://le_taste.herokuapp.com',
+    'DOMAIN': 'http://elementfrontendsite.herokuapp.com',
     'SITE_NAME': 'Element Portal',
     'PASSWORD_RESET_CONFIRM_URL': 'auth/password/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': 'auth/activate/{uid}/{token}',
