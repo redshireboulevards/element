@@ -75,12 +75,28 @@ SCHEMA = Document(
                 User Logout
 
                 Just removes the Token from the backend
-                """
+                """,
+                fields=[
+                    Field(
+                        name="Authorization",
+                        required=False,
+                        location="header",
+                        description="ex. Token XXX"
+                    ),
+                ]
             ),
             'me': Link(
                 url=BASE_AUTH_URL + 'me/',
                 action='get',
-                description='Get user details'
+                description='Get user details',
+                fields=[
+                    Field(
+                        name="Authorization",
+                        required=False,
+                        location="header",
+                        description="ex. Token XXX"
+                    ),
+                ]
             ),
             'update-me': Link(
                 url=BASE_AUTH_URL + 'me/',
@@ -89,6 +105,12 @@ SCHEMA = Document(
                     Update User Profile
                 """,
                 fields=[
+                    Field(
+                        name="Authorization",
+                        required=False,
+                        location="header",
+                        description="ex. Token XXX"
+                    ),
                     Field(
                         name='email',
                         required=False,
@@ -113,6 +135,12 @@ SCHEMA = Document(
                     Change Password
                 """,
                 fields=[
+                    Field(
+                        name="Authorization",
+                        required=False,
+                        location="header",
+                        description="ex. Token XXX"
+                    ),
                     Field(
                         name='current_password',
                         required=True,
