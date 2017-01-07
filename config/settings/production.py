@@ -9,10 +9,7 @@ Production Configurations
 
 """
 from boto.s3.connection import OrdinaryCallingFormat
-from django.utils import six
-
 import logging
-
 
 from .common import *  # noqa
 
@@ -85,12 +82,11 @@ AWS_EXPIRY = 60 * 60 * 24 * 7
 # Revert the following and use str after the above-mentioned bug is fixed in
 # either django-storage-redux or boto
 AWS_HEADERS = {
-    'Cache-Control': six.b('max-age=%d, s-maxage=%d, must-revalidate' % (
-        AWS_EXPIRY, AWS_EXPIRY))
+    'Cache-Control': 'max-age=%d, s-maxage=%d, must-revalidate' % (
+        AWS_EXPIRY, AWS_EXPIRY)
 }
 
-# URL that handles the media served from MEDIA_ROOT, used for managing
-# stored files.
+# URL that handles the media served from MEDIA_ROOT, used for managing stored files.
 
 #  See:http://stackoverflow.com/questions/10390244/
 from storages.backends.s3boto import S3BotoStorage
