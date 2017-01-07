@@ -64,3 +64,5 @@ element/media/
 
 
 staticfiles/
+
+*.sqlite3
