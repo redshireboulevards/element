@@ -27,10 +27,15 @@ DJANGO_APPS = (
     'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_swagger',
+    'users',
+    'djoser',
 )
 
 LOCAL_APPS = (
-    'element.users.apps.UsersConfig',
+    'element.core.apps.CoreConfig',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -178,10 +183,30 @@ ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# PASSWORD VALIDATION
-# https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
-# ------------------------------------------------------------------------------
+# -------------------------------API - RestFramework-----------------------------------------------
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    # Authentication
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
+    # testing
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'TEST_REQUEST_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.MultiPartRenderer',
+    ),
+}
 
+# -------------------------------- AUTHENTICATION and Django-Users2--------------------------------------
 AUTH_PASSWORD_VALIDATORS = [
     # {
     #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -197,13 +222,25 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
-
-# --------------------------AUTHENTICATION CONFIGURATION---------------------------------------
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-# Select the correct user model
 AUTH_USER_MODEL = 'users.User'
-LOGIN_URL = '/admin/login/'
-LOGOUT_URL = '/admin/logout/'
+LOGIN_URL = '/api-auth/login/'
+LOGOUT_URL = '/api-auth/logout/'
+
+USERS_CREATE_SUPERUSER = True  # DEBUG
+USERS_SUPERUSER_EMAIL = 'admin@element.com'
+USERS_SUPERUSER_PASSWORD = '123qwe'
+
+# -------------------------------- DJOSER--------------------------------------
+DJOSER = {
+    'DOMAIN': 'http://le_taste.herokuapp.com',
+    'SITE_NAME': 'Element Portal',
+    'PASSWORD_RESET_CONFIRM_URL': 'auth/password/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'auth/activate/{uid}/{token}',
+    'LOGIN_AFTER_REGISTRATION': True,
+    'LOGIN_AFTER_ACTIVATION': True,
+    'SEND_ACTIVATION_EMAIL': False,
+}
