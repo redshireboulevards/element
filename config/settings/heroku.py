@@ -17,6 +17,24 @@ SECURE_SSL_REDIRECT = True
 # Honor the 'X-Forwarded-Proto' SECURE_PROXY_SSL_HEADERer for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+# See: https://whitenoise.readthedocs.io/
+WHITENOISE_MIDDLEWARE = ('whitenoise.middleware.WhiteNoiseMiddleware', )
+MIDDLEWARE = WHITENOISE_MIDDLEWARE + MIDDLEWARE
+
+# Static Assets
+# ------------------------
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+# TEMPLATE CONFIGURATION
+# ------------------------------------------------------------------------------
+# See:
+# https://docs.djangoproject.com/en/dev/ref/templates/api/#django.template.loaders.cached.Loader
+TEMPLATES[0]['OPTIONS']['loaders'] = [
+    ('django.template.loaders.cached.Loader', [
+        'django.template.loaders.filesystem.Loader', 'django.template.loaders.app_directories.Loader', ]),
+]
+
 # Heroku URL does not pass the DB number, so we parse it in
 CACHES = {
     'default': {

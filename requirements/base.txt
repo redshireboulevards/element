@@ -1,6 +1,7 @@
 django
 
 django-environ
+whitenoise
 
 psycopg2
 
