@@ -29,7 +29,7 @@ SCHEMA = Document(
                 ]
             ),
             'activate': Link(
-                url=BASE_AUTH_URL + '/activate/',
+                url=BASE_AUTH_URL + 'activate/',
                 action='post',
                 description="""
                     Activate account
@@ -164,7 +164,7 @@ SCHEMA = Document(
                 ],
             ),
             'reset-password': Link(
-                url=BASE_AUTH_URL + '/password/reset/',
+                url=BASE_AUTH_URL + 'password/reset/',
                 action='post',
                 description="""
                     Reset Password
@@ -178,7 +178,7 @@ SCHEMA = Document(
                 ],
             ),
             'reset-password-confirm': Link(
-                url=BASE_AUTH_URL + '/password/reset/confirm/',
+                url=BASE_AUTH_URL + 'password/reset/confirm/',
                 action='post',
                 description="""
                     Reset Password confirm
