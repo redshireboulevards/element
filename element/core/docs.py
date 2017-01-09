@@ -3,6 +3,7 @@ from coreapi import Document, Link, Field
 
 BASE_URL = '/api/v1/'
 BASE_AUTH_URL = BASE_URL + 'auth/'
+BASE_ANALYTICS_URL = BASE_URL + 'analytics/'
 
 SCHEMA = Document(
     title='Element API',
@@ -224,5 +225,31 @@ SCHEMA = Document(
                 ],
             ),
         },
+        'analytics': {
+            'record-activity': Link(
+                url=BASE_ANALYTICS_URL + 'record-activity',
+                action='post',
+                description='''
+                    Record Analytics activity
+                ''',
+                fields=[
+                    Field(
+                        name='graph',
+                        required=True,
+                        location='formData',
+                    ),
+                    Field(
+                        name='accessed_via',
+                        required=True,
+                        location='formData',
+                    ),
+                    Field(
+                        name='time_spent',
+                        required=True,
+                        location='formData',
+                    ),
+                ]
+            ),
+        }
     }
 )

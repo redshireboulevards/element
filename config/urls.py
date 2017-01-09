@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^api/v1/docs/$', SwaggerSchemaView.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/v1/auth/', include('element.accounts.urls')),
+    url(r'^api/v1/analytics/', include('element.analytics.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
