@@ -126,6 +126,16 @@ SCHEMA = Document(
                         required=False,
                         location='formData',
                     ),
+                    Field(
+                        name='instagram_handle',
+                        required=False,
+                        location='formData',
+                    ),
+                    Field(
+                        name='birthdate',
+                        required=False,
+                        location='formData',
+                    ),
                 ]
             ),
             'change-password': Link(

@@ -25,6 +25,7 @@ class UserAdmin(BaseUserAdmin):
     )
     list_display = ('email', 'is_active')
     readonly_fields = ('last_login', 'date_joined', )
+    ordering = ('email', )
 
 
 admin.site.register(User, UserAdmin)

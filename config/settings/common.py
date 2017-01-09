@@ -239,4 +239,7 @@ DJOSER = {
     'LOGIN_AFTER_REGISTRATION': True,
     'LOGIN_AFTER_ACTIVATION': True,
     'SEND_ACTIVATION_EMAIL': False,
+    'SERIALIZERS': {
+        'user': 'element.accounts.serializers.UserSerializer',
+    },
 }
