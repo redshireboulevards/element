@@ -65,6 +65,13 @@ SCHEMA = Document(
                         required=True,
                         location="formData",
                         description='Password'
+                    ),
+                    Field(
+                        name='activate',
+                        required=False,
+                        location="formData",
+                        type='boolean',
+                        description='for non active users'
                     )
                 ]
             ),
@@ -199,6 +206,21 @@ SCHEMA = Document(
                         required=True,
                         location='formData',
                     ),
+                ],
+            ),
+            'suspend-my-account': Link(
+                url=BASE_AUTH_URL + 'suspend-account/',
+                action='post',
+                description="""
+                    Suspend My account
+                """,
+                fields=[
+                    Field(
+                        name="Authorization",
+                        required=False,
+                        location="header",
+                        description="ex. Token XXX"
+                    )
                 ],
             ),
         },

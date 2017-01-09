@@ -241,5 +241,6 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': False,
     'SERIALIZERS': {
         'user': 'element.accounts.serializers.UserSerializer',
+        'login': 'element.accounts.serializers.LoginSerializer',
     },
 }
