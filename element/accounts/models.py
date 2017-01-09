@@ -47,3 +47,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         if self.first_name and self.last_name:
             return self.first_name + ' ' + self.last_name
         return self.email
+
+
+class LoginActivity(models.Model):
+    user = models.ForeignKey(User, related_name='login_activities')
+    time = models.DateTimeField('Login Time', auto_now_add=True)
+    ip = models.GenericIPAddressField('IP Address used', null=True, blank=True)

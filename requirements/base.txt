@@ -13,3 +13,5 @@ redis
 djangorestframework
 django-rest-swagger
 djoser
+
+django-ipware
