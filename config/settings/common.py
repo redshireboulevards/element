@@ -36,6 +36,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'element.core.apps.CoreConfig',
     'element.accounts.apps.AccountsConfig',
+    'element.analytics.apps.AnalyticsConfig',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

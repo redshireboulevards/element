@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .models import AnalyticsActivity
 
 
-class AnalyticsActivitySerializer(serializers.ModelsSerializer):
+class AnalyticsActivitySerializer(serializers.ModelSerializer):
 
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
