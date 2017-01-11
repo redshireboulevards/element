@@ -1,18 +1,18 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser as DjangoAbstractBaseUser, PermissionsMixin
 
 from .managers import UserManager
 
 
-class User(AbstractBaseUser, PermissionsMixin):
+class AbstractBaseUser(DjangoAbstractBaseUser, PermissionsMixin):
     '''
     Fields inherited from PermissionsMixin:
     password - is_superuser - groups - permissions
-    '''
-    email = models.EmailField('Email Address', unique=True)
-    first_name = models.CharField('First Name', max_length=30, blank=True)
-    last_name = models.CharField('Last Name', max_length=30, blank=True)
 
+    Fields inherited from AbstractBaseUser: last_login
+    '''
+
+    email = models.EmailField('Email Address', unique=True)
     is_staff = models.BooleanField(
         'Staff Status',
         default=False,
@@ -26,13 +26,23 @@ class User(AbstractBaseUser, PermissionsMixin):
             Unselect this instead of deleting accounts.
         """
     )
-    date_joined = models.DateTimeField('Date joined', auto_now_add=True)
 
-    instagram_handle = models.CharField('Instagram Handle', max_length=100, null=True, blank=True)
-    bithdate = models.DateField('Birthdate', null=True, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    class Meta:
+        abstract = True
+
+
+class User(AbstractBaseUser):
+    first_name = models.CharField('First Name', max_length=30, blank=True)
+    last_name = models.CharField('Last Name', max_length=30, blank=True)
+
+
+    date_joined = models.DateTimeField('Date joined', auto_now_add=True)
+    bithdate = models.DateField('Birthdate', null=True, blank=True)
+    instagram_handle = models.CharField('Instagram Handle', max_length=100, null=True, blank=True)
 
     objects = UserManager()
 
